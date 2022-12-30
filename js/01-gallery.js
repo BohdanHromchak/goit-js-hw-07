@@ -29,9 +29,11 @@ function onClick(evt) {
     `<img src="${evt.target.dataset.source}">`
   );
   instance.show();
-  gallery.addEventListener("keydown", (evt) => {
+  gallery.addEventListener("keydown", onEscape);
+  function onEscape(evt) {
     if (evt.code === "Escape") {
       instance.close();
+      evt.currentTarget.removeEventListener("keydown", onEscape);
     }
-  });
+  }
 }
